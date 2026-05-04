@@ -88,6 +88,9 @@ const toast = document.querySelector("#toast");
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector("#site-nav");
 const leadForm = document.querySelector("#leadForm");
+const infoModal = document.querySelector("#infoModal");
+const openInfoButtons = document.querySelectorAll("[data-open-info]");
+const closeInfoButtons = document.querySelectorAll("[data-close-info]");
 
 let activeFilter = "all";
 let cart = [];
@@ -168,6 +171,20 @@ function showToast(message) {
   window.setTimeout(() => toast.classList.remove("show"), 2600);
 }
 
+function openInfoModal() {
+  if (!infoModal) return;
+  infoModal.classList.add("open");
+  infoModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+
+function closeInfoModal() {
+  if (!infoModal) return;
+  infoModal.classList.remove("open");
+  infoModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+}
+
 if (grid) {
   grid.addEventListener("click", (event) => {
     const button = event.target.closest("[data-cert]");
@@ -209,6 +226,22 @@ navToggle?.addEventListener("click", () => {
   const expanded = navToggle.getAttribute("aria-expanded") === "true";
   navToggle.setAttribute("aria-expanded", String(!expanded));
   nav?.classList.toggle("open", !expanded);
+});
+
+openInfoButtons.forEach((button) => {
+  button.addEventListener("click", openInfoModal);
+});
+
+closeInfoButtons.forEach((button) => {
+  button.addEventListener("click", closeInfoModal);
+});
+
+infoModal?.addEventListener("click", (event) => {
+  if (event.target === infoModal) closeInfoModal();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeInfoModal();
 });
 
 leadForm?.addEventListener("submit", (event) => {

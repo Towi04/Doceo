@@ -39,77 +39,127 @@
           <a href="cenni.html">CENNI</a>
           <a href="alianzas.html">Alianzas</a>
           <a href="campus.html">Campus</a>
-          <a class="nav-cta" href="contacto.html">Hablar con asesor</a>
+          <button class="nav-cta nav-button" type="button" data-open-info>Hablar con asesor</button>
         </nav>
       </header>
 
       <main>
-        <section class="hero visual-hero">
+        <section class="hero visual-hero hercules-hero">
+          <span class="float-hex hex-a" aria-hidden="true"></span>
+          <span class="float-hex hex-b" aria-hidden="true"></span>
+          <span class="float-hex hex-c" aria-hidden="true"></span>
           <div class="hero-copy">
-            <span class="eyebrow">Escuela online + centro autorizado</span>
-            <h1>Certificaciones oficiales sin vueltas.</h1>
+            <span class="hero-badge">Centro Autorizado de Certificacion</span>
+            <h1>Be different, be better!</h1>
             <p>
-              Ingles, informatica, examenes internacionales y tramite CENNI con asesoria antes
-              de pagar.
+              Certificate en ingles e informatica con reconocimiento internacional.
+              Tramite CENNI, TOEFL, Cambridge, Microsoft y mas.
             </p>
             <div class="hero-actions">
               <a class="button primary" href="certificaciones.html">Ver certificaciones</a>
-              <a class="button ghost" href="cenni.html">Quiero CENNI</a>
+              <button class="button ghost" type="button" data-open-info>Pedir informes</button>
             </div>
             <ul class="hero-proof" aria-label="Datos principales">
-              <li><strong>75+</strong><span>examenes y cursos</span></li>
-              <li><strong>8+</strong><span>alianzas oficiales</span></li>
-              <li><strong>100%</strong><span>acompanamiento online</span></li>
+              <li><strong>500+</strong><span>alumnos activos</span></li>
+              <li><strong>75+</strong><span>certificaciones</span></li>
+              <li><strong>8+</strong><span>alianzas internacionales</span></li>
             </ul>
           </div>
-          <div class="hero-media">
-            <img
-              src="assets/hero-learner.svg"
-              alt="Alumno en linea con abeja DOCEO y panel de certificaciones"
-            />
+          <div class="hero-media hercules-collage" aria-label="Estudiantes y certificaciones DOCEO">
+            <div class="hex-photo main-photo">
+              <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Estudiantes aprendiendo en linea" />
+            </div>
+            <div class="hex-photo small-photo top">
+              <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&w=600&q=80" alt="Asesora educativa" />
+            </div>
+            <div class="hex-photo small-photo bottom">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" alt="Clase en plataforma online" />
+            </div>
+            <div class="bee-orbit" aria-hidden="true">
+              <span class="brand-mark">
+                <span class="bee-wing left"></span>
+                <span class="bee-wing right"></span>
+                <span class="bee-body"></span>
+              </span>
+            </div>
           </div>
         </section>
 
-        <section class="quick-services" aria-label="Servicios principales">
+        <section id="sobre-nosotros" class="about-hercules">
+          <div class="about-collage">
+            <div class="hex-photo">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=700&q=80" alt="Equipo de trabajo estudiando" />
+            </div>
+            <div class="hex-photo offset">
+              <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=700&q=80" alt="Estudiante en computadora" />
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow">Sobre nosotros</span>
+            <h2>Escuela en linea especializada en certificaciones.</h2>
+            <p>
+              Ofrecemos certificaciones de ingles, informatica y tramite CENNI ante la SEP.
+              Todo con asesoria para elegir el examen correcto y agendarlo sin confusiones.
+            </p>
+            <button class="button primary" type="button" data-open-info>Quiero que me contacten</button>
+          </div>
+        </section>
+
+        <section class="quick-services hercules-services" aria-label="Servicios principales">
           <a class="service-tile image-tile" href="certificaciones.html">
-            <img src="assets/certifications.svg" alt="Tarjetas de certificaciones" />
-            <span>Certificaciones</span>
-            <strong>Ingles, Office, Adobe, Autodesk y mas.</strong>
+            <span class="service-icon">EN</span>
+            <span>Certificaciones de Ingles</span>
+            <strong>TOEFL, TOEIC, Cambridge, iTEP, Oxford, ELet y mas.</strong>
           </a>
           <a class="service-tile image-tile featured" href="cenni.html">
-            <img src="assets/cenni-process.svg" alt="Proceso CENNI" />
-            <span>Producto estrella</span>
-            <strong>iTEP o ELet + tramite CENNI.</strong>
+            <span class="service-icon">SEP</span>
+            <span>Tramite CENNI</span>
+            <strong>Examen + expediente en un solo lugar.</strong>
+          </a>
+          <a class="service-tile image-tile" href="certificaciones.html">
+            <span class="service-icon">IT</span>
+            <span>Certificaciones de Informatica</span>
+            <strong>Microsoft Office, Adobe, Autodesk, IC3 y programacion.</strong>
           </a>
           <a class="service-tile image-tile" href="campus.html">
-            <img src="assets/campus.svg" alt="Campus virtual Moodle" />
-            <span>Campus online</span>
-            <strong>Cursos y preparacion en Moodle.</strong>
+            <span class="service-icon">EDU</span>
+            <span>Cursos en Linea</span>
+            <strong>Campus Moodle con preparacion y seguimiento.</strong>
+          </a>
+          <a class="service-tile image-tile" href="certificaciones.html">
+            <span class="service-icon">PV</span>
+            <span>Centro Certiport</span>
+            <strong>Aplicacion de examenes Certiport / Pearson VUE.</strong>
+          </a>
+          <a class="service-tile image-tile" href="campus.html">
+            <span class="service-icon">TKT</span>
+            <span>Desarrollo Profesional</span>
+            <strong>TKT, docentes, metodologia y habilidades laborales.</strong>
           </a>
         </section>
 
-        <section class="split-section compact">
+        <section class="split-section compact cenni-highlight">
           <div>
-            <span class="eyebrow">Compra asistida</span>
-            <h2>El carrito no cobra de inmediato.</h2>
+            <span class="eyebrow">Producto estrella</span>
+            <h2>Examen + tramite CENNI con acompanamiento.</h2>
             <p>
-              Primero un asesor confirma fechas, modalidad, supervision y requisitos. Despues te
-              enviamos la liga de pago correcta.
+              Los examenes mas solicitados para CENNI son iTEP y ELet. Un asesor confirma
+              disponibilidad, protocolo y documentos antes de pedirte el pago.
             </p>
-            <a class="button primary" href="certificaciones.html#catalogo">Elegir examen</a>
+            <button class="button primary" type="button" data-open-info>Solicitar informacion</button>
           </div>
           <div class="mini-steps" aria-label="Pasos de compra">
-            <article><span>01</span><strong>Eliges</strong></article>
-            <article><span>02</span><strong>Te asesoramos</strong></article>
-            <article><span>03</span><strong>Pagas</strong></article>
-            <article><span>04</span><strong>Presentas</strong></article>
+            <article><span>01</span><strong>Presenta tu examen</strong></article>
+            <article><span>02</span><strong>Recibe resultado</strong></article>
+            <article><span>03</span><strong>Integramos expediente</strong></article>
+            <article><span>04</span><strong>Obtienes CENNI</strong></article>
           </div>
         </section>
 
-        <section class="partner-preview">
+        <section class="partner-preview hercules-partners">
           <div class="section-heading">
-            <span class="eyebrow">Convenios</span>
-            <h2>Trabajamos con proveedores reconocidos.</h2>
+            <span class="eyebrow">Nuestras alianzas</span>
+            <h2>Respaldados por instituciones reconocidas.</h2>
           </div>
           <div class="logo-cloud">
             <span>ETC Iberoamerica</span>
