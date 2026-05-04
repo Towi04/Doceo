@@ -93,10 +93,7 @@ let activeFilter = "all";
 let cart = [];
 
 function normalizeText(value) {
-  return value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+  return value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 function matchesFilter(cert) {
@@ -107,6 +104,8 @@ function matchesFilter(cert) {
 }
 
 function renderCertifications() {
+  if (!grid || !searchInput) return;
+
   const query = normalizeText(searchInput.value.trim());
   const visible = certifications.filter((cert) => {
     const searchable = normalizeText(`${cert.name} ${cert.provider} ${cert.desc}`);
@@ -115,8 +114,8 @@ function renderCertifications() {
 
   grid.innerHTML = visible
     .map(
-      (cert, index) => `
-        <article class="cert-card" style="--delay:${Math.min(index, 8) * 40}ms">
+      (cert) => `
+        <article class="cert-card">
           <div class="cert-topline">
             <span>${cert.provider}</span>
             ${cert.featured ? '<strong class="pill star">Mas vendida</strong>' : ""}
@@ -127,9 +126,7 @@ function renderCertifications() {
             <span class="pill">${cert.category === "english" ? "Ingles" : "Informatica"}</span>
             ${cert.cenni ? '<span class="pill cenni-pill">Compatible CENNI</span>' : ""}
           </div>
-          <button class="add-button" type="button" data-cert="${cert.name}">
-            Agregar a solicitud
-          </button>
+          <button class="add-button" type="button" data-cert="${cert.name}">Agregar a solicitud</button>
         </article>
       `,
     )
@@ -141,6 +138,8 @@ function renderCertifications() {
 }
 
 function renderCart() {
+  if (!cartItems || !cartCount) return;
+
   cartCount.textContent = cart.length;
   if (!cart.length) {
     cartItems.innerHTML = '<p class="empty-cart">Agrega certificaciones para solicitar agenda y cotizacion.</p>';
@@ -163,32 +162,38 @@ function renderCart() {
 }
 
 function showToast(message) {
+  if (!toast) return;
   toast.textContent = message;
   toast.classList.add("show");
   window.setTimeout(() => toast.classList.remove("show"), 2600);
 }
 
-grid.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-cert]");
-  if (!button) return;
+if (grid) {
+  grid.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-cert]");
+    if (!button) return;
 
-  const cert = certifications.find((item) => item.name === button.dataset.cert);
-  if (!cert || cart.some((item) => item.name === cert.name)) {
-    showToast("Esa certificacion ya esta en tu solicitud.");
-    return;
-  }
+    const cert = certifications.find((item) => item.name === button.dataset.cert);
+    if (!cert || cart.some((item) => item.name === cert.name)) {
+      showToast("Esa certificacion ya esta en tu solicitud.");
+      return;
+    }
 
-  cart = [...cart, cert];
-  renderCart();
-  showToast(`${cert.name} agregada al carrito asesorado.`);
-});
+    cart = [...cart, cert];
+    renderCart();
+    showToast(`${cert.name} agregada al carrito asesorado.`);
+    document.querySelector("#carrito")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
 
-cartItems.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-remove]");
-  if (!button) return;
-  cart = cart.filter((item) => item.name !== button.dataset.remove);
-  renderCart();
-});
+if (cartItems) {
+  cartItems.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-remove]");
+    if (!button) return;
+    cart = cart.filter((item) => item.name !== button.dataset.remove);
+    renderCart();
+  });
+}
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -198,23 +203,15 @@ filterButtons.forEach((button) => {
   });
 });
 
-document.querySelectorAll("[data-filter-link]").forEach((link) => {
-  link.addEventListener("click", () => {
-    const filter = link.dataset.filterLink;
-    const button = document.querySelector(`[data-filter="${filter}"]`);
-    if (button) button.click();
-  });
-});
+searchInput?.addEventListener("input", renderCertifications);
 
-searchInput.addEventListener("input", renderCertifications);
-
-navToggle.addEventListener("click", () => {
+navToggle?.addEventListener("click", () => {
   const expanded = navToggle.getAttribute("aria-expanded") === "true";
   navToggle.setAttribute("aria-expanded", String(!expanded));
-  nav.classList.toggle("open", !expanded);
+  nav?.classList.toggle("open", !expanded);
 });
 
-leadForm.addEventListener("submit", (event) => {
+leadForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(leadForm);
   const selected = cart.map((item) => item.name).join(", ") || "sin certificacion seleccionada";

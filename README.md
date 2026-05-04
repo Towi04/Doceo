@@ -1,6 +1,6 @@
 # Instituto DOCEO landing
 
-Prototipo estatico para una nueva pagina de Instituto DOCEO.
+Prototipo estatico multipagina para una nueva pagina de Instituto DOCEO.
 
 ## Como verlo
 
@@ -12,10 +12,11 @@ python3 -m http.server 8000
 
 Luego visita `http://localhost:8000`.
 
-## Incluye
+## Paginas incluidas
 
-- Diseno responsivo con paleta institucional y motivo tipo panal.
-- Catalogo filtrable de certificaciones de ingles e informatica.
-- Etiquetas para examenes compatibles con tramite CENNI.
-- Carrito asesorado que prepara una solicitud por WhatsApp antes del pago.
-- Enlaces a campus Moodle, CENNI SEP y convenios principales.
+- `index.html`: portada visual con servicios principales.
+- `certificaciones.html`: catalogo filtrable y carrito asesorado.
+- `cenni.html`: explicacion visual del tramite CENNI.
+- `alianzas.html`: convenios principales.
+- `campus.html`: campus Moodle y rutas de preparacion.
+- `contacto.html`: solicitud para hablar con asesor.

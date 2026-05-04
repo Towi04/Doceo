@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Solicita asesoria de Instituto DOCEO para certificaciones, CENNI, campus online y examenes oficiales."
+    />
+    <title>Contacto | Instituto DOCEO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar" aria-label="Navegacion principal">
+        <a class="brand" href="index.html" aria-label="Instituto DOCEO inicio">
+          <span class="brand-mark" aria-hidden="true">
+            <span class="bee-wing left"></span>
+            <span class="bee-wing right"></span>
+            <span class="bee-body"></span>
+          </span>
+          <span>
+            <strong>Instituto DOCEO</strong>
+            <small>be different, be better</small>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav id="site-nav" class="site-nav">
+          <a href="index.html">Inicio</a>
+          <a href="certificaciones.html">Certificaciones</a>
+          <a href="cenni.html">CENNI</a>
+          <a href="alianzas.html">Alianzas</a>
+          <a href="campus.html">Campus</a>
+          <a class="nav-cta" href="contacto.html">Hablar con asesor</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="page-hero contact-hero">
+          <div>
+            <span class="eyebrow">Contacto</span>
+            <h1>Cuentanos que certificacion necesitas.</h1>
+            <p>Un asesor confirma examen, fecha, requisitos, modalidad y liga de pago.</p>
+          </div>
+          <img src="assets/hero-learner.svg" alt="Asesoria DOCEO" />
+        </section>
+
+        <section class="contact-panel">
+          <form id="leadForm" class="lead-form lead-form-large">
+            <label>
+              Nombre completo
+              <input type="text" name="name" placeholder="Tu nombre" required />
+            </label>
+            <label>
+              WhatsApp o telefono
+              <input type="tel" name="phone" placeholder="Ej. 55 1234 5678" required />
+            </label>
+            <label>
+              Objetivo
+              <select name="goal">
+                <option value="cenni">Quiero examen + tramite CENNI</option>
+                <option value="certificacion">Quiero una certificacion especifica</option>
+                <option value="curso">Quiero curso de preparacion</option>
+                <option value="empresa">Soy escuela o empresa</option>
+              </select>
+            </label>
+            <button class="button primary full" type="submit">Enviar solicitud por WhatsApp</button>
+          </form>
+          <div class="contact-card">
+            <h2>Antes de pagar</h2>
+            <p>Te explicamos fechas, modalidad, supervision, identificacion y documentos necesarios.</p>
+            <a class="button ghost" href="certificaciones.html">Ver catalogo</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>
+          <strong>Instituto DOCEO</strong>
+          <p>Be different, be better.</p>
+        </div>
+        <div class="footer-links">
+          <a href="certificaciones.html">Certificaciones</a>
+          <a href="cenni.html">CENNI</a>
+          <a href="https://campus.institutodoceo.com" target="_blank" rel="noreferrer">Campus</a>
+          <a href="contacto.html">Contacto</a>
+        </div>
+      </footer>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
