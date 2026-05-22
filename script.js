@@ -91,9 +91,99 @@ const leadForm = document.querySelector("#leadForm");
 const infoModal = document.querySelector("#infoModal");
 const openInfoButtons = document.querySelectorAll("[data-open-info]");
 const closeInfoButtons = document.querySelectorAll("[data-close-info]");
+const certDetailModal = document.querySelector("#certDetailModal");
+const certDetailContent = document.querySelector("#certDetailContent");
+const closeCertDetailButtons = document.querySelectorAll("[data-close-cert-detail]");
 
 let activeFilter = "all";
 let cart = [];
+
+const providerVisuals = [
+  {
+    match: /microsoft|word|excel|powerpoint|outlook|access|windows/i,
+    logo: "https://etciberoamerica.com/assets/logos_cert/microsoft-logo.svg",
+    color: "#315285",
+  },
+  {
+    match: /adobe|photoshop|illustrator|premiere|indesign|animate|after effects|dreamweaver/i,
+    logo: "https://etciberoamerica.com/assets/logos_cert/Adobe_Corporate_logo.svg",
+    color: "#0A0A0A",
+  },
+  {
+    match: /autodesk|autocad|fusion|inventor|revit|3ds max|maya/i,
+    logo: "https://etciberoamerica.com/assets/logos_cert/Autodesk_certified%20User_logo.svg",
+    color: "#1f365b",
+  },
+  {
+    match: /python/i,
+    logo: "https://etciberoamerica.com/assets/logos_cert/Python_logo_and_wordmark.svg",
+    color: "#315285",
+  },
+  {
+    match: /java/i,
+    logo: "https://etciberoamerica.com/assets/logos_cert/Java-Logo.svg",
+    color: "#1f365b",
+  },
+  {
+    match: /unity/i,
+    logo: "https://etciberoamerica.com/assets/logos_cert/Unity_Technologies_logo.svg",
+    color: "#0A0A0A",
+  },
+  {
+    match: /swift/i,
+    logo: "https://etciberoamerica.com/assets/logos_cert/App_Development_Swift_Badge.svg",
+    color: "#315285",
+  },
+  {
+    match: /certiport|ic3|entrepreneurship/i,
+    logo: "https://etciberoamerica.com/assets/logos/CACT.svg",
+    color: "#315285",
+  },
+];
+
+function getProviderVisual(cert) {
+  const signature = `${cert.name} ${cert.provider}`;
+  return providerVisuals.find((visual) => visual.match.test(signature)) || {
+    logo: "",
+    color: cert.category === "english" ? "#315285" : "#0A0A0A",
+  };
+}
+
+function getCertInitials(cert) {
+  return cert.name
+    .replace(/\([^)]*\)/g, "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+}
+
+function getCertificationDetail(cert) {
+  const isEnglish = cert.category === "english";
+  const isCenni = cert.cenni;
+  const certificate = isEnglish
+    ? "Reporte o certificado oficial del proveedor con resultado de nivel de ingles. Si el instrumento aplica, puede integrarse al expediente CENNI."
+    : "Certificado digital oficial de habilidades, emitido por el proveedor correspondiente y verificable segun su plataforma.";
+  const idealFor = isEnglish
+    ? "Alumnos que necesitan comprobar nivel de ingles para escuela, empleo, movilidad academica o tramite CENNI."
+    : "Alumnos, docentes y profesionales que desean validar habilidades digitales con reconocimiento internacional.";
+  const agenda = isEnglish
+    ? "Un asesor confirma modalidad, nivel objetivo, identificacion, requisitos tecnicos y fechas disponibles antes del pago."
+    : "Un asesor valida disponibilidad de examen, version, plataforma, requisitos tecnicos y preparacion recomendada.";
+
+  return {
+    certificate,
+    idealFor,
+    agenda,
+    features: [
+      isCenni ? "Puede servir para ruta CENNI previa validacion vigente." : "Certificacion enfocada en habilidades especificas.",
+      "Agenda asistida antes de realizar cualquier pago.",
+      "Opcion de preparacion en campus DOCEO cuando aplique.",
+    ],
+  };
+}
 
 function normalizeText(value) {
   return value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -119,6 +209,13 @@ function renderCertifications() {
     .map(
       (cert) => `
         <article class="cert-card">
+          <div class="cert-visual" style="--provider-color:${getProviderVisual(cert).color}">
+            ${
+              getProviderVisual(cert).logo
+                ? `<img src="${getProviderVisual(cert).logo}" alt="${cert.provider}" loading="lazy" />`
+                : `<span>${getCertInitials(cert)}</span>`
+            }
+          </div>
           <div class="cert-topline">
             <span>${cert.provider}</span>
             ${cert.featured ? '<strong class="pill star">Mas vendida</strong>' : ""}
@@ -129,7 +226,10 @@ function renderCertifications() {
             <span class="pill">${cert.category === "english" ? "Ingles" : "Informatica"}</span>
             ${cert.cenni ? '<span class="pill cenni-pill">Compatible CENNI</span>' : ""}
           </div>
-          <button class="add-button" type="button" data-cert="${cert.name}">Agregar a solicitud</button>
+          <div class="cert-actions">
+            <button class="detail-button" type="button" data-detail="${cert.name}">Ver detalles</button>
+            <button class="add-button" type="button" data-cert="${cert.name}">Agregar</button>
+          </div>
         </article>
       `,
     )
@@ -138,6 +238,63 @@ function renderCertifications() {
   if (!visible.length) {
     grid.innerHTML = '<p class="no-results">No encontramos coincidencias. Prueba con otro termino o solicita ayuda de un asesor.</p>';
   }
+}
+
+function openCertDetail(cert) {
+  if (!certDetailModal || !certDetailContent) return;
+  const detail = getCertificationDetail(cert);
+  const visual = getProviderVisual(cert);
+  certDetailContent.innerHTML = `
+    <div class="cert-detail-layout">
+      <div class="cert-detail-visual" style="--provider-color:${visual.color}">
+        ${
+          visual.logo
+            ? `<img src="${visual.logo}" alt="${cert.provider}" />`
+            : `<span>${getCertInitials(cert)}</span>`
+        }
+        <div>
+          <strong>${cert.provider}</strong>
+          <p>${cert.category === "english" ? "Certificacion de ingles" : "Certificacion digital"}</p>
+        </div>
+      </div>
+      <div class="cert-detail-copy">
+        <span class="eyebrow">${cert.cenni ? "Compatible CENNI" : "Certificacion DOCEO"}</span>
+        <h2 id="certDetailTitle">${cert.name}</h2>
+        <p>${cert.desc}</p>
+        <div class="detail-grid">
+          <article>
+            <h3>Que recibes</h3>
+            <p>${detail.certificate}</p>
+          </article>
+          <article>
+            <h3>Ideal para</h3>
+            <p>${detail.idealFor}</p>
+          </article>
+          <article>
+            <h3>Antes de pagar</h3>
+            <p>${detail.agenda}</p>
+          </article>
+        </div>
+        <ul class="detail-list">
+          ${detail.features.map((feature) => `<li>${feature}</li>`).join("")}
+        </ul>
+        <div class="detail-actions">
+          <button class="button primary" type="button" data-cert="${cert.name}">Agregar a solicitud</button>
+          <button class="button ghost" type="button" data-close-cert-detail>Cerrar</button>
+        </div>
+      </div>
+    </div>
+  `;
+  certDetailModal.classList.add("open");
+  certDetailModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+}
+
+function closeCertDetail() {
+  if (!certDetailModal) return;
+  certDetailModal.classList.remove("open");
+  certDetailModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
 }
 
 function renderCart() {
@@ -187,6 +344,13 @@ function closeInfoModal() {
 
 if (grid) {
   grid.addEventListener("click", (event) => {
+    const detailButton = event.target.closest("[data-detail]");
+    if (detailButton) {
+      const cert = certifications.find((item) => item.name === detailButton.dataset.detail);
+      if (cert) openCertDetail(cert);
+      return;
+    }
+
     const button = event.target.closest("[data-cert]");
     if (!button) return;
 
@@ -202,6 +366,30 @@ if (grid) {
     document.querySelector("#carrito")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
+
+certDetailModal?.addEventListener("click", (event) => {
+  if (event.target === certDetailModal || event.target.closest("[data-close-cert-detail]")) {
+    closeCertDetail();
+    return;
+  }
+
+  const button = event.target.closest("[data-cert]");
+  if (!button) return;
+  const cert = certifications.find((item) => item.name === button.dataset.cert);
+  if (!cert || cart.some((item) => item.name === cert.name)) {
+    showToast("Esa certificacion ya esta en tu solicitud.");
+    return;
+  }
+  cart = [...cart, cert];
+  renderCart();
+  closeCertDetail();
+  showToast(`${cert.name} agregada al carrito asesorado.`);
+  document.querySelector("#carrito")?.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+closeCertDetailButtons.forEach((button) => {
+  button.addEventListener("click", closeCertDetail);
+});
 
 if (cartItems) {
   cartItems.addEventListener("click", (event) => {
@@ -241,7 +429,10 @@ infoModal?.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") closeInfoModal();
+  if (event.key === "Escape") {
+    closeInfoModal();
+    closeCertDetail();
+  }
 });
 
 leadForm?.addEventListener("submit", (event) => {

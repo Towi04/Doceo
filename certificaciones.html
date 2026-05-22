@@ -45,13 +45,46 @@
         <section class="page-hero">
           <div>
             <span class="eyebrow">Catalogo DOCEO</span>
-            <h1>Elige certificacion. Nosotros te ayudamos a agendar.</h1>
+            <h1>Certificaciones con respaldo internacional.</h1>
             <p>
-              Filtra por area o busca el examen que necesitas. Agregar al carrito solo crea una
-              solicitud de asesoria, no un cobro inmediato.
+              Explora examenes de ingles, tecnologia y habilidades digitales. Revisa detalles,
+              certificado que recibes y agenda con asesoria antes de pagar.
             </p>
           </div>
-          <img src="assets/certifications.svg" alt="Catalogo visual de certificaciones" />
+          <div class="cert-hero-visual">
+            <img src="https://etciberoamerica.com/assets/logos/etc_iberoamerica_logo.svg" alt="ETC Iberoamerica" />
+            <div class="cert-hero-card">
+              <strong>Aprende. Practica. Certifica.</strong>
+              <span>Modelo de certificacion con acompanamiento DOCEO.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="cert-brand-strip" aria-label="Marcas de certificacion">
+          <img src="https://etciberoamerica.com/assets/logos_cert/microsoft-logo.svg" alt="Microsoft" />
+          <img src="https://etciberoamerica.com/assets/logos_cert/Adobe_Corporate_logo.svg" alt="Adobe" />
+          <img src="https://etciberoamerica.com/assets/logos_cert/Autodesk_certified%20User_logo.svg" alt="Autodesk Certified User" />
+          <img src="https://etciberoamerica.com/assets/logos_cert/Python_logo_and_wordmark.svg" alt="Python" />
+          <img src="https://etciberoamerica.com/assets/logos_cert/Java-Logo.svg" alt="Java" />
+          <img src="https://etciberoamerica.com/assets/logos_cert/Unity_Technologies_logo.svg" alt="Unity" />
+        </section>
+
+        <section class="cert-method">
+          <article>
+            <span class="method-icon">01</span>
+            <h2>Aprende</h2>
+            <p>Te recomendamos curso o preparacion segun tu objetivo.</p>
+          </article>
+          <article>
+            <span class="method-icon">02</span>
+            <h2>Practica</h2>
+            <p>Confirmamos modalidad, requisitos tecnicos y protocolo.</p>
+          </article>
+          <article>
+            <span class="method-icon">03</span>
+            <h2>Certifica</h2>
+            <p>Presentas el examen y recibes la credencial correspondiente.</p>
+          </article>
         </section>
 
         <section id="catalogo" class="catalog page-catalog">
@@ -119,6 +152,13 @@
           <a href="contacto.html">Contacto</a>
         </div>
       </footer>
+    </div>
+
+    <div id="certDetailModal" class="cert-detail-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="certDetailTitle">
+      <div class="cert-detail-dialog">
+        <button class="modal-close" type="button" data-close-cert-detail aria-label="Cerrar">x</button>
+        <div id="certDetailContent"></div>
+      </div>
     </div>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
