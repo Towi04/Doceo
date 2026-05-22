@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" role="img">
+  <rect width="900" height="650" rx="54" fill="#ffffff"/>
+  <path d="M0 510c160-70 280-76 420-22s280 60 480-32v194H0z" fill="#315285" opacity=".14"/>
+  <g transform="translate(100 92)">
+    <rect width="205" height="260" rx="28" fill="#315285"/>
+    <text x="30" y="74" fill="#F5DF25" font-size="34" font-family="Arial" font-weight="700">TOEFL</text>
+    <text x="30" y="126" fill="#fff" font-size="24" font-family="Arial">Ingles</text>
+    <text x="30" y="176" fill="#fff" font-size="24" font-family="Arial">CENNI</text>
+  </g>
+  <g transform="translate(348 180)">
+    <rect width="205" height="260" rx="28" fill="#F5DF25"/>
+    <text x="30" y="74" fill="#0A0A0A" font-size="34" font-family="Arial" font-weight="700">MOS</text>
+    <text x="30" y="126" fill="#315285" font-size="24" font-family="Arial">Office</text>
+    <text x="30" y="176" fill="#315285" font-size="24" font-family="Arial">Excel</text>
+  </g>
+  <g transform="translate(595 92)">
+    <rect width="205" height="260" rx="28" fill="#0A0A0A"/>
+    <text x="30" y="74" fill="#F5DF25" font-size="34" font-family="Arial" font-weight="700">Adobe</text>
+    <text x="30" y="126" fill="#fff" font-size="24" font-family="Arial">Diseno</text>
+    <text x="30" y="176" fill="#fff" font-size="24" font-family="Arial">Creativo</text>
+  </g>
+  <g fill="none" stroke="#315285" stroke-width="5" opacity=".3">
+    <path d="M270 442l58-34 58 34v68l-58 34-58-34z"/>
+    <path d="M386 442l58-34 58 34v68l-58 34-58-34z"/>
+    <path d="M502 442l58-34 58 34v68l-58 34-58-34z"/>
+  </g>
+</svg>
